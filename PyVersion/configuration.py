@@ -15,7 +15,7 @@ def singleton(cls):
 class ConfigurationData:
     """一个数据类，用来保存状态信息
 
-    使用了线程安全的（我调试了好久呜呜呜）单例模式，可以在全局使用ConfigurationData()访问同一个事例，来同步保存状态信息"""
+    使用了线程安全的单例模式（我调试了好久呜呜呜），可以在全局使用ConfigurationData()访问同一个事例，来同步保存状态信息"""
     Host1Port: int
     Host2Port: int
     Host1Addr: str
