@@ -36,3 +36,5 @@ def task(arg):
 for i in range(100):
     t = threading.Thread(target=task, args=[i, ])
     t.start()
+
+print(Hive().x)
