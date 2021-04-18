@@ -4,10 +4,10 @@ from dataclasses import dataclass
 def singleton(cls):
     instance = cls()
 
-    def new_call(self):
+    def single_new(self):
         return instance
-    cls.__call__ = new_call
-    return instance
+    cls.__new__ = single_new
+    return cls
 
 
 @singleton
