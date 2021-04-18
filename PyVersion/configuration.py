@@ -27,6 +27,7 @@ class ConfigurationData:
     SWSize: int
     InitSeqNo: int
     Timeout: int
+    TransSeq: int
 
 
 @unique
