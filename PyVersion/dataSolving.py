@@ -25,6 +25,7 @@ def get_frame(received_bytes):
         str1 = str(received_bytes, encoding='utf-8')
         data = eval(str1)
         frame = Frame(data)
+
         if frame.crc_check():
             return frame, False
         else:
@@ -33,6 +34,8 @@ def get_frame(received_bytes):
         # return d,err
     else:
         raise TypeError('not a bytes object')
+
+# TODO: @DreamingNight 写日志的调用散落在各处（因为发送接受都要使用，是否成功也都要使用），进度显示的逻辑只在接受到正确的包存到文件时使用即可
 
 
 def save_to_file(frame):
