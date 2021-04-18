@@ -34,3 +34,7 @@ class PDUStatus(Enum):
     New = 1  # 新PDU
     TO = 2  # 超时重传
     RT = 3  # 被请求重传
+    # 下面是收到的PUD状态值
+    DataErr = 4  # 数据错误
+    NoErr = 5  # 序号错误
+    OK = 6  # 正确
