@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from enum import Enum, unique
 
 
 def singleton(cls):
@@ -26,3 +27,10 @@ class ConfigurationData:
     SWSize: int
     InitSeqNo: int
     Timeout: int
+
+
+@unique
+class PDUStatus(Enum):
+    New = 1  # 新PDU
+    TO = 2  # 超时重传
+    RT = 3  # 被请求重传
