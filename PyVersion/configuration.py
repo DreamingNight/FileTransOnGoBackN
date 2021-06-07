@@ -28,6 +28,7 @@ class ConfigurationData:
     InitSeqNo: int
     Timeout: int
     TransSeq: int
+    FileSeq: int
 
 
 @unique
