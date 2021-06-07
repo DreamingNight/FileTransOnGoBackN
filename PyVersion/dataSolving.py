@@ -1,20 +1,6 @@
-
-
-class Frame:
-    # TODO:@htj
-    def __init__(self, data):
-
-        self.data = data
-        pass
-
-    def crc_check(self):
-        pass
-
-    pass
-
-
-# TODO : @DreamingNight create a prop file to write the path to var below
-filePath = 'C:'
+from frame import Frame
+from frame import _crc_decode
+from frame import construct
 
 
 def get_frame(received_bytes):
@@ -24,9 +10,9 @@ def get_frame(received_bytes):
     if isinstance(received_bytes, bytes):
         str1 = str(received_bytes, encoding='utf-8')
         data = eval(str1)
-        frame = Frame(data)
+        frame = construct(data)
 
-        if frame.crc_check():
+        if _crc_decode(frame.to_bytes()):
             return frame, False
         else:
             err = True  # this frame is damaged
@@ -35,16 +21,15 @@ def get_frame(received_bytes):
     else:
         raise TypeError('not a bytes object')
 
+
 # TODO: @DreamingNight 写日志的调用散落在各处（因为发送接受都要使用，是否成功也都要使用），进度显示的逻辑只在接受到正确的包存到文件时使用即可
 
 
-def save_to_file(frame):
+def save_to_file(frame, file_path):
     """将frame的数据段写入文件，并显示当前传输状态和进度
 
     该函数接受一个经过Go Back N协议确认过的frame对象作为参数，如果不是Frame对象则抛出一个异常"""
     if not isinstance(frame, Frame):
         raise TypeError('not a Frame object')
-    with open(filePath, 'r', encoding='utf-8') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         f.write(frame.data)
-
-
