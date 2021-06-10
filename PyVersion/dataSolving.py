@@ -10,7 +10,7 @@ def get_frame(received_bytes):
     if isinstance(received_bytes, bytes):
         str1 = str(received_bytes, encoding='utf-8')
         data = eval(str1)
-        frame = construct(data)
+        frame, status = construct(data)
 
         if _crc_decode(frame.to_bytes()):
             return frame, False
