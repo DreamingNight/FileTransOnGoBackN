@@ -5,7 +5,7 @@ from loguru import logger
 
 def add_log_file(file_seq):
     addr = str(file_seq) + 'transLog.log'
-    logger.add(addr, filter=lambda x: str(file_seq) in x)
+    logger.add(addr, filter=lambda x: str(file_seq) in x['message'])
     # maybe need in x['message'] later
 
 
