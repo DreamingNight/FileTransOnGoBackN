@@ -5,7 +5,7 @@ from loguru import logger
 
 def add_log_file(file_seq):
     addr = str(file_seq) + 'transLog.log'
-    logger.add(addr, filter=lambda x: str(file_seq) in x['message'])
+    logger.add(addr, filter=lambda x: ('#' + str(file_seq) + '#') in x['message'])
     # maybe need in x['message'] later
 
 
@@ -16,8 +16,10 @@ def get_time_stamp():
 
 def log_send_frame_info(pdu_to_send: int, status, acked: int, file_seq):
     if status == PDUStatus.New:
-        info = str(file_seq) + get_time_stamp() + 'pdu_to_send=' + str(
+        info = '#' + str(file_seq) + '#' + get_time_stamp() + 'pdu_to_send=' + str(
             pdu_to_send) + ', status=New' + ', ackedNo=' + str(acked)
+        # info =  str(file_seq) + get_time_stamp() + 'pdu_to_send=' + str(
+        #     pdu_to_send) + ', status=New' + ', ackedNo=' + str(acked)
         logger.info(info)
     elif status == PDUStatus.TO:
         info = str(file_seq) + get_time_stamp() + 'pdu_to_send=' + str(
